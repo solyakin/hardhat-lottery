@@ -8,7 +8,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 // import "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
 
 error Raffle__NotEnoughETHEntered();
-error Raffel__TransactionFailed();
+error Raffle__TransactionFailed();
 error Raffle__NotOpen();
 error Raffle__UpKeepNotNeeded(uint256 currentBalance, uint256 numplayers, uint256 raffleState);
 
@@ -31,7 +31,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     enum RaffleState {
         OPEN,
         CALCULATING
-    } //OPEN = 0 && CALCULATING = 1
+    } //OPEN = 0 && CALCULATING =1
 
     uint256 private immutable ENTRANCE_FEE;
     address payable[] private s_players; //address is payable because we will pay one of the address that win the lottery
@@ -144,7 +144,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         (bool success, ) = recentWinner.call{ value : address(this).balance }("");
 
         if(!success){
-            revert Raffel__TransactionFailed();
+            revert Raffle__TransactionFailed();
         }
         emit WinnerPicked(recentWinner);
     }

@@ -12,7 +12,7 @@ describe("Raffle Unit Test", () => {
     beforeEach(async () => {
         
         deployer = (await getNamedAccounts()).deployer;
-        await deployments.fixture(["mocks", "raffle"]);
+        await deployments.fixture(["all"]);
         raffle = await ethers.getContract("Raffle", deployer)
         console.log(raffle.address)
         vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock", deployer);
